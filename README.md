@@ -13,15 +13,39 @@ streams. The resulting files can be used for application testing without the nee
 Saved sessions can also be used with the forthcoming `FMDatasportR` analysis engine. Details on this project can be
 found here: https://github.com/ESQVR/ForzaDatasport-Ruby
 
-For detailed information on using this gem please review the [RDocs Documentation](doc/index.html)
+For detailed information on using this gem please review the [RDocs Documentation](https://esqvr.github.io/FMDatasport/)
 
 # Installation
-To install FMDatasport use:
+### Requirements
+1. Forza Motorsport (2023 - AKA FM8)
+FMDatasport is a utility for reading Forza Motorsport Data Out - so you do, in fact, need a copy of Forza.
+
+2. Ruby
+  - *Version*: FMDatasport was developed with Ruby 3.2.2. The gem is spec'd to require > 2.7. It has not been tested with earlier
+  versions and so may not be compatible.
+  - *Dependencies*: This gem does not require anything beyond standard libraries:
+    - socket
+    - json
+
+### Compatibility
+- PC/XBOX: This gem has been tested with an Xbox Series X sending data on a local network.
+
+  FM8 introduced the ability to send data to localhost 127.0.0.1 to enable reading Data Out on the same PC that is running FM8. There should be no issues but, given that it has not been tested in this environment,
+  it is possible you may encounter issues however unlikely.
+
+- Operating System: This gem is designed to work on both macOS/Unix systems as well as Windows. However it has not yet been tested in a Windows environment, so there remains a possibility that Windows users may experience issues.
+
+- Other non-Unix operating systems are not guaranteed to support FMDatasport or its command-line utilities.
+
+### Prerelease Considerations
+Until FMDatasport is published - the built gem will be available in this repo - and will need to be installed manually.
+
+1. Download repo and navigate to the root directory (e.g., FMDATASPORT) containing the `fmdatasport-0.1.1.gem` file
 
   ```
-  gem install fmdatasport
+  gem install ./fmdatasport-0.1.1.gem
   ```
-
+2. The gem is now installed!
 # Command Line Tools
 
 ## 1. Record telemetry data with standalone fmdorecorder
@@ -46,7 +70,7 @@ If not provided, the default port number `9876` will be used.
 
 - `-f, --file FILE`: Specify the name of the recorded data file
 
-If not provided, the default name `recorded_stream[time_stamp]` will be used
+If not provided, the default name `recorded_stream_[time_stamp]` will be used
 
 - `-l, --length LENGTH`: Specify the length of the recording, in seconds
 
@@ -59,7 +83,7 @@ fmdorecorder -p 1234 -f output.txt -l 30
 ```
 This example command:
 - records sample data
-- saves it to the file `/sessions/output.txt`
+- saves to the file `./sessions/output.txt`
 - for 30 seconds total
 
 ## 2. Playback saved telemetry data with fmdoplayer
@@ -108,47 +132,9 @@ fmdoplayer -f output.txt -i 192.168.1.100 -p 1234 -l 3
 
 
 
-# Demo Implementation using SamplePlayer
+# Demo Implementation using `SamplePlayer`
 
-See example below for a simple implementation that will output to console 1 second of selected data
+See example below for a demo implementation that will output to console 1 second of selected data
 from a recorded sample file: `lib/data/samples/sample_data`
 
 ### [Demo Script (click here)](lib/data/samples/demo.rb)
-
-```ruby
-# frozen_string_literal: true
-
-require 'fmdatasport'
-require 'sample_player'
-
-player = SamplePlayer.new('lib/data/samples/sample_data', '127.0.0.1', 9876)
-fmdo_sample = FMDatasport.new('127.0.0.1', 9876)    # Same IP/Port as SamplePlayer
-
-player.play                                         # Begin sample playback
-start_time = Time.now                               # Set for loop control
-
-# Loop for 1 second, output selected telemetry and static values
-loop do
-  break if Time.now - start_time > 1                # limit loop to 1 second
-
-  # Wait 1/60th of a second before beginning log (Forza Data Out rate)
-  sleep 0.01667
-
-  # Set variables to desired fields from @udp_data
-  rpm = fmdo_sample.udp_data[:current_engine_rpm].round(0)
-  gear = fmdo_sample.udp_data[:gear]
-  speed = fmdo_sample.udp_data[:speed]
-
-  # Print values to console
-  puts "RPM: #{rpm}"
-  puts "Gear: #{gear}"
-  puts "Speed (unconverted): #{speed}"
-end
-
-# After the playback is complete, log (static) car information once
-car = fmdo_sample.static_data[:"Car Ordinal"] # => [year, make, model]
-puts "\nCar Info"
-car.each do |info|
-  puts info
-end
-```

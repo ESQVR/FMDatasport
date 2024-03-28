@@ -173,7 +173,7 @@
 </pre>
 
           <div class="method-source-code" id="car_lookup-source">
-            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 43</span>
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">car_lookup</span>(<span class="ruby-identifier">ordinal</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ordinal</span>.<span class="ruby-identifier">nil?</span>
 
@@ -205,7 +205,7 @@
 <p><a href="CarInfo.html#method-i-convert_class"><code>convert_class</code></a>(3)  =&gt; ‘B’</p>
 
           <div class="method-source-code" id="convert_class-source">
-            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert_class</span>(<span class="ruby-identifier">num</span>)
   <span class="ruby-identifier">conversion</span> = { <span class="ruby-value">0</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;E&#39;</span>, <span class="ruby-value">1</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;D&#39;</span>, <span class="ruby-value">2</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;C&#39;</span>, <span class="ruby-value">3</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;B&#39;</span>, <span class="ruby-value">4</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;A&#39;</span>, <span class="ruby-value">5</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;S&#39;</span>, <span class="ruby-value">6</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;R&#39;</span>, <span class="ruby-value">7</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;P&#39;</span>, <span class="ruby-value">8</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;X&#39;</span> }
   <span class="ruby-identifier">conversion</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">num</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">conversion</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;Error: Invalid Class ID Number&#39;</span>
@@ -229,7 +229,7 @@
           <p>Converts drivetrain-type integers into readable drivetrain labels for display</p>
 
           <div class="method-source-code" id="convert_drive-source">
-            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 63</span>
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert_drive</span>(<span class="ruby-identifier">num</span>)
   <span class="ruby-identifier">conversion</span> = { <span class="ruby-value">0</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;FWD&#39;</span>, <span class="ruby-value">1</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;RWD&#39;</span>, <span class="ruby-value">2</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;AWD&#39;</span> }
   <span class="ruby-identifier">conversion</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">num</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">conversion</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;Error: Invalid drive type&#39;</span>

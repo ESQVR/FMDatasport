@@ -158,7 +158,7 @@
 <p>If you are using the <a href="SamplePlayer.html"><code>SamplePlayer</code></a>, provide the same IP/Port arguments given to <a href="SamplePlayer.html#method-c-new"><code>SamplePlayer.new</code></a></p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/fmdatasport.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/fmdatasport.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">ip_addr</span>, <span class="ruby-identifier">port</span>)
   <span class="ruby-ivar">@collector</span> = <span class="ruby-identifier">spawn_udp_receive_thread</span> <span class="ruby-comment"># @collector not used, assigned for thread mgmt &amp; protect from garbage collect</span>
   <span class="ruby-ivar">@my_ip</span> = <span class="ruby-identifier">ip_addr</span>

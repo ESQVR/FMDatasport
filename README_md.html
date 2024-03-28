@@ -61,7 +61,18 @@
 
   <ul class="link-list" role="directory">
               <li>      <a href="#label-FMDatasport">FMDatasport</a>
-          <li>      <a href="#label-Installation">Installation</a>
+          <li>
+            <details open>
+              <summary>      <a href="#label-Installation">Installation</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Requirements">Requirements</a>
+          <li>      <a href="#label-Compatibility">Compatibility</a>
+          <li>      <a href="#label-Prerelease+Considerations">Prerelease Considerations</a>
+
+              </ul>
+            </details>
+          </li>
           <li>
             <details open>
               <summary>      <a href="#label-Command+Line+Tools">Command Line Tools</a>
@@ -97,7 +108,7 @@
           </li>
           <li>
             <details open>
-              <summary>      <a href="#label-Demo+Implementation+using+SamplePlayer">Demo Implementation using SamplePlayer</a>
+              <summary>      <a href="#label-Demo+Implementation+using+SamplePlayer">Demo Implementation using <code>SamplePlayer</code></a>
 </summary>
               <ul class="link-list" role="directory">
                           <li>      <a href="#label-Demo+Script+-28click+here-29"><a href="lib/data/samples/demo_rb.html">Demo Script (click here)</a></a>
@@ -136,13 +147,46 @@
 
 <p>Saved sessions can also be used with the forthcoming <code>FMDatasportR</code> analysis engine. Details on this project can be found here: <a href="https://github.com/ESQVR/ForzaDatasport-Ruby">github.com/ESQVR/ForzaDatasport-Ruby</a></p>
 
-<p>For detailed information on using this gem please review the <a href="doc/index.html">RDocs Documentation</a></p>
+<p>For detailed information on using this gem please review the <a href="https://esqvr.github.io/FMDatasport/">RDocs Documentation</a></p>
 
 <h1 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
-<p>To install <a href="FMDatasport.html"><code>FMDatasport</code></a> use:</p>
+<h3 id="label-Requirements">Requirements<span><a href="#label-Requirements">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ol><li>
+<p>Forza Motorsport (2023 - AKA FM8) <a href="FMDatasport.html"><code>FMDatasport</code></a> is a utility for reading Forza Motorsport Data Out - so you do, in fact, need a copy of Forza.</p>
+</li><li>
+<p>Ruby</p>
+</li><li>
+<p><em>Version</em>: <a href="FMDatasport.html"><code>FMDatasport</code></a> was developed with Ruby 3.2.2. The gem is spec’d to require &gt; 2.7. It has not been tested with earlier versions and so may not be compatible.</p>
+</li><li>
+<p><em>Dependencies</em>: This gem does not require anything beyond standard libraries:</p>
+<ul><li>
+<p>socket</p>
+</li><li>
+<p>json</p>
+</li></ul>
+</li></ol>
 
-<p><code>  gem install fmdatasport </code></p>
+<h3 id="label-Compatibility">Compatibility<span><a href="#label-Compatibility">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>PC/XBOX: This gem has been tested with an Xbox Series X sending data on a local network.</p>
+</li></ul>
+
+<p>FM8 introduced the ability to send data to localhost 127.0.0.1 to enable reading Data Out on the same PC that is running FM8. There should be no issues but, given that it has not been tested in this environment, it is possible you may encounter issues however unlikely.</p>
+<ul><li>
+<p>Operating System: This gem is designed to work on both macOS/Unix systems as well as Windows. However it has not yet been tested in a Windows environment, so there remains a possibility that Windows users may experience issues.</p>
+</li><li>
+<p>Other non-Unix operating systems are not guaranteed to support <a href="FMDatasport.html"><code>FMDatasport</code></a> or its command-line utilities.</p>
+</li></ul>
+
+<h3 id="label-Prerelease+Considerations">Prerelease Considerations<span><a href="#label-Prerelease+Considerations">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Until <a href="FMDatasport.html"><code>FMDatasport</code></a> is published - the built gem will be available in this repo - and will need to be installed manually.</p>
+<ol><li>
+<p>Download repo and navigate to the root directory (e.g., FMDATASPORT) containing the <code>fmdatasport-0.1.1.gem</code> file</p>
+</li></ol>
+
+<p><code>  gem install ./fmdatasport-0.1.1.gem </code> 2. The gem is now installed!</p>
 
 <h1 id="label-Command+Line+Tools">Command Line Tools<span><a href="#label-Command+Line+Tools">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
@@ -167,7 +211,7 @@
 <p><code>-f, --file FILE</code>: Specify the name of the recorded data file</p>
 </li></ul>
 
-<p>If not provided, the default name <code>recorded_stream[time_stamp]</code> will be used</p>
+<p>If not provided, the default name <code>recorded_stream_[time_stamp]</code> will be used</p>
 <ul><li>
 <p><code>-l, --length LENGTH</code>: Specify the length of the recording, in seconds</p>
 </li></ul>
@@ -178,7 +222,7 @@
 
 <pre>fmdorecorder -p 1234 -f output.txt -l 30</pre>
 
-<p>This example command: - records sample data - saves it to the file <code>/sessions/output.txt</code> - for 30 seconds total</p>
+<p>This example command: - records sample data - saves to the file <code>./sessions/output.txt</code> - for 30 seconds total</p>
 
 <h2 id="label-2.+Playback+saved+telemetry+data+with+fmdoplayer">2. Playback saved telemetry data with fmdoplayer<span><a href="#label-2.+Playback+saved+telemetry+data+with+fmdoplayer">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
@@ -228,48 +272,11 @@
 <p>loops the data broadcasting three times</p>
 </li></ol>
 
-<h1 id="label-Demo+Implementation+using+SamplePlayer">Demo Implementation using <a href="SamplePlayer.html"><code>SamplePlayer</code></a><span><a href="#label-Demo+Implementation+using+SamplePlayer">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1 id="label-Demo+Implementation+using+SamplePlayer">Demo Implementation using <code>SamplePlayer</code><span><a href="#label-Demo+Implementation+using+SamplePlayer">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
-<p>See example below for a simple implementation that will output to console 1 second of selected data from a recorded sample file: <code>lib/data/samples/sample_data</code></p>
+<p>See example below for a demo implementation that will output to console 1 second of selected data from a recorded sample file: <code>lib/data/samples/sample_data</code></p>
 
 <h3 id="label-Demo+Script+-28click+here-29"><a href="lib/data/samples/demo_rb.html">Demo Script (click here)</a><span><a href="#label-Demo+Script+-28click+here-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
-
-<pre class="ruby"><span class="ruby-comment"># frozen_string_literal: true</span>
-
-<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fmdatasport&#39;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sample_player&#39;</span>
-
-<span class="ruby-identifier">player</span> = <span class="ruby-constant">SamplePlayer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;lib/data/samples/sample_data&#39;</span>, <span class="ruby-string">&#39;127.0.0.1&#39;</span>, <span class="ruby-value">9876</span>)
-<span class="ruby-identifier">fmdo_sample</span> = <span class="ruby-constant">FMDatasport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;127.0.0.1&#39;</span>, <span class="ruby-value">9876</span>)    <span class="ruby-comment"># Same IP/Port as SamplePlayer</span>
-
-<span class="ruby-identifier">player</span>.<span class="ruby-identifier">play</span>                                         <span class="ruby-comment"># Begin sample playback</span>
-<span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>                               <span class="ruby-comment"># Set for loop control</span>
-
-<span class="ruby-comment"># Loop for 1 second, output selected telemetry and static values</span>
-<span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>                <span class="ruby-comment"># limit loop to 1 second</span>
-
-  <span class="ruby-comment"># Wait 1/60th of a second before beginning log (Forza Data Out rate)</span>
-  <span class="ruby-identifier">sleep</span> <span class="ruby-value">0.01667</span>
-
-  <span class="ruby-comment"># Set variables to desired fields from @udp_data</span>
-  <span class="ruby-identifier">rpm</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:current_engine_rpm</span>].<span class="ruby-identifier">round</span>(<span class="ruby-value">0</span>)
-  <span class="ruby-identifier">gear</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:gear</span>]
-  <span class="ruby-identifier">speed</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:speed</span>]
-
-  <span class="ruby-comment"># Print values to console</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;RPM: #{rpm}&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gear: #{gear}&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Speed (unconverted): #{speed}&quot;</span>
-<span class="ruby-keyword">end</span>
-
-<span class="ruby-comment"># After the playback is complete, log (static) car information once</span>
-<span class="ruby-identifier">car</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">static_data</span>[<span class="ruby-value">:&quot;Car Ordinal&quot;</span>] <span class="ruby-comment"># =&gt; [year, make, model]</span>
-<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\nCar Info&quot;</span>
-<span class="ruby-identifier">car</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">info</span><span class="ruby-operator">|</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">info</span>
-<span class="ruby-keyword">end</span>
-</pre>
 
 </main>
 

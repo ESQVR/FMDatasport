@@ -165,7 +165,7 @@
   <span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-identifier">timestamp</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y%m%d%H%M&quot;</span>) <span class="ruby-comment"># Get timestamp in YYYYMMDDHHMM format</span>
 
-  <span class="ruby-identifier">directory</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>), <span class="ruby-string">&#39;..&#39;</span>, <span class="ruby-string">&#39;..&#39;</span>, <span class="ruby-string">&#39;sessions&#39;</span>) <span class="ruby-comment"># Directory to prepend to the base file path</span>
+  <span class="ruby-identifier">directory</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>, <span class="ruby-string">&#39;sessions&#39;</span>) <span class="ruby-comment"># Directory to prepend to the base file path</span>
 
   <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">directory</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">directory</span>)
 
