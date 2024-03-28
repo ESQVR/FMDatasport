@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require 'optparse'
+require_relative '../lib/fmdatasport/sample_recorder'
+
+# Parse command-line arguments
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: fmdorecorder [options]"
+
+  opts.on("-p", "--port PORT", "Listen on PORT") do |port|
+    options[:port] = port.to_i
+  end
+
+  opts.on("-f", "--file FILE", "Save data to FILE") do |file|
+    options[:file] = file
+  end
+
+  opts.on("-l", "--length LENGTH", "Record for LENGTH seconds") do |length|
+    options[:length] = length.to_i
+  end
+end.parse!
+
+# Instantiate and start the recorder
+recorder = SampleRecorder.new(options[:port] || 9876, options[:file] || 'recorded_stream', options[:length] || 60)
+recorder.start
