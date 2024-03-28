@@ -46,7 +46,7 @@ If not provided, the default port number `9876` will be used.
 
 - `-f, --file FILE`: Specify the name of the recorded data file
 
-If not provided, the default name `recorded_stream[time_stamp]` will be used
+If not provided, the default name `recorded_stream_[time_stamp]` will be used
 
 - `-l, --length LENGTH`: Specify the length of the recording, in seconds
 
@@ -114,41 +114,3 @@ See example below for a simple implementation that will output to console 1 seco
 from a recorded sample file: `lib/data/samples/sample_data`
 
 ### [Demo Script (click here)](lib/data/samples/demo.rb)
-
-```ruby
-# frozen_string_literal: true
-
-require 'fmdatasport'
-require 'sample_player'
-
-player = SamplePlayer.new('lib/data/samples/sample_data', '127.0.0.1', 9876)
-fmdo_sample = FMDatasport.new('127.0.0.1', 9876)    # Same IP/Port as SamplePlayer
-
-player.play                                         # Begin sample playback
-start_time = Time.now                               # Set for loop control
-
-# Loop for 1 second, output selected telemetry and static values
-loop do
-  break if Time.now - start_time > 1                # limit loop to 1 second
-
-  # Wait 1/60th of a second before beginning log (Forza Data Out rate)
-  sleep 0.01667
-
-  # Set variables to desired fields from @udp_data
-  rpm = fmdo_sample.udp_data[:current_engine_rpm].round(0)
-  gear = fmdo_sample.udp_data[:gear]
-  speed = fmdo_sample.udp_data[:speed]
-
-  # Print values to console
-  puts "RPM: #{rpm}"
-  puts "Gear: #{gear}"
-  puts "Speed (unconverted): #{speed}"
-end
-
-# After the playback is complete, log (static) car information once
-car = fmdo_sample.static_data[:"Car Ordinal"] # => [year, make, model]
-puts "\nCar Info"
-car.each do |info|
-  puts info
-end
-```
