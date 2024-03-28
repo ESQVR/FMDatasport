@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module TrackInfo - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-load_and_merge_tracks">::load_and_merge_tracks</a>
+    <li ><a href="#method-i-track_lookup">#track_lookup</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-TrackInfo">
+  <h1 id="module-TrackInfo" class="module">
+    module TrackInfo
+  </h1>
+
+  <section class="description">
+    
+<p>Module: <a href="TrackInfo.html"><code>TrackInfo</code></a></p>
+
+<p><a href="TrackInfo.html"><code>TrackInfo</code></a> reads track information data from an external file and makes this available to <a href="FMDatasport.html"><code>FMDatasport</code></a></p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="TRACK_LIST">TRACK_LIST
+        <dd>
+      </dl>
+    </section>
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-load_and_merge_tracks" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">load_and_merge_tracks</span><span
+              class="method-args">(file_path)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="load_and_merge_tracks-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/track_info.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">load_and_merge_tracks</span>(<span class="ruby-identifier">file_path</span>)
+  <span class="ruby-identifier">external_list</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file_path</span>), <span class="ruby-value">symbolize_names:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-constant">TRACK_LIST</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">external_list</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-track_lookup" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">track_lookup</span><span
+              class="method-args">(ordinal)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="track_lookup-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/track_info.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">track_lookup</span>(<span class="ruby-identifier">ordinal</span>) <span class="ruby-comment"># rubocop:disable Metrics/MethodLength</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ordinal</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-comment"># Retrieves current track info by ordinal from TRACK_LIST hash</span>
+  <span class="ruby-comment"># Arguments passed by FMDOParser::extract_static_data calls are integers and must be symbolized</span>
+  <span class="ruby-identifier">track_info</span> = <span class="ruby-constant">TRACK_LIST</span>[<span class="ruby-identifier">ordinal</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">to_sym</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Track Ordinal #{ordinal} is not in data file. Please Update&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">track_info</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-comment"># Current list of IOC codes - source: https://en.wikipedia.org/wiki/List_of_IOC_country_codes</span>
+  <span class="ruby-identifier">ioc_hash</span> = {
+    <span class="ruby-string">&#39;afg&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Afghanistan&#39;</span>,
+    <span class="ruby-string">&#39;alb&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Albania&#39;</span>,
+    <span class="ruby-string">&#39;alg&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Algeria&#39;</span>,
+    <span class="ruby-string">&#39;and&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Andorra&#39;</span>,
+    <span class="ruby-string">&#39;ang&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Angola&#39;</span>,
+    <span class="ruby-string">&#39;ant&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Antigua and Barbuda&#39;</span>,
+    <span class="ruby-string">&#39;arg&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Argentina&#39;</span>,
+    <span class="ruby-string">&#39;arm&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Armenia&#39;</span>,
+    <span class="ruby-string">&#39;aru&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Aruba&#39;</span>,
+    <span class="ruby-string">&#39;asa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;American Samoa&#39;</span>,
+    <span class="ruby-string">&#39;aus&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Australia&#39;</span>,
+    <span class="ruby-string">&#39;aut&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Austria&#39;</span>,
+    <span class="ruby-string">&#39;aze&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Azerbaijan&#39;</span>,
+    <span class="ruby-string">&#39;bah&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bahamas&#39;</span>,
+    <span class="ruby-string">&#39;ban&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bangladesh&#39;</span>,
+    <span class="ruby-string">&#39;bar&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Barbados&#39;</span>,
+    <span class="ruby-string">&#39;bdi&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Burundi&#39;</span>,
+    <span class="ruby-string">&#39;bel&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Belgium&#39;</span>,
+    <span class="ruby-string">&#39;ben&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Benin&#39;</span>,
+    <span class="ruby-string">&#39;ber&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bermuda&#39;</span>,
+    <span class="ruby-string">&#39;bhu&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bhutan&#39;</span>,
+    <span class="ruby-string">&#39;bih&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bosnia and Herzegovina&#39;</span>,
+    <span class="ruby-string">&#39;biz&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Belize&#39;</span>,
+    <span class="ruby-string">&#39;blr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Belarus&#39;</span>,
+    <span class="ruby-string">&#39;bol&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bolivia&#39;</span>,
+    <span class="ruby-string">&#39;bot&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Botswana&#39;</span>,
+    <span class="ruby-string">&#39;bra&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Brazil&#39;</span>,
+    <span class="ruby-string">&#39;brn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bahrain&#39;</span>,
+    <span class="ruby-string">&#39;bru&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Brunei&#39;</span>,
+    <span class="ruby-string">&#39;bul&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bulgaria&#39;</span>,
+    <span class="ruby-string">&#39;bur&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Burkina Faso&#39;</span>,
+    <span class="ruby-string">&#39;caf&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Central African Republic&#39;</span>,
+    <span class="ruby-string">&#39;cam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cambodia&#39;</span>,
+    <span class="ruby-string">&#39;can&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Canada&#39;</span>,
+    <span class="ruby-string">&#39;cay&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cayman Islands&#39;</span>,
+    <span class="ruby-string">&#39;cgo&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Republic of the Congo&#39;</span>,
+    <span class="ruby-string">&#39;cha&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Chad&#39;</span>,
+    <span class="ruby-string">&#39;chi&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Chile&#39;</span>,
+    <span class="ruby-string">&#39;chn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;China&#39;</span>,
+    <span class="ruby-string">&#39;civ&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ivory Coast&#39;</span>,
+    <span class="ruby-string">&#39;cmr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cameroon&#39;</span>,
+    <span class="ruby-string">&#39;cod&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Democratic Republic of the Congo&#39;</span>,
+    <span class="ruby-string">&#39;cok&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cook Islands&#39;</span>,
+    <span class="ruby-string">&#39;col&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Colombia&#39;</span>,
+    <span class="ruby-string">&#39;com&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Comoros&#39;</span>,
+    <span class="ruby-string">&#39;cpv&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cape Verde&#39;</span>,
+    <span class="ruby-string">&#39;crc&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Costa Rica&#39;</span>,
+    <span class="ruby-string">&#39;cro&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Croatia&#39;</span>,
+    <span class="ruby-string">&#39;cub&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cuba&#39;</span>,
+    <span class="ruby-string">&#39;cyp&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Cyprus&#39;</span>,
+    <span class="ruby-string">&#39;cze&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Czechia&#39;</span>,
+    <span class="ruby-string">&#39;den&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Denmark&#39;</span>,
+    <span class="ruby-string">&#39;dji&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Djibouti&#39;</span>,
+    <span class="ruby-string">&#39;dma&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Dominica&#39;</span>,
+    <span class="ruby-string">&#39;dom&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Dominican Republic&#39;</span>,
+    <span class="ruby-string">&#39;ecu&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ecuador&#39;</span>,
+    <span class="ruby-string">&#39;egy&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Egypt&#39;</span>,
+    <span class="ruby-string">&#39;eri&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Eritrea&#39;</span>,
+    <span class="ruby-string">&#39;esa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;El Salvador&#39;</span>,
+    <span class="ruby-string">&#39;esp&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Spain&#39;</span>,
+    <span class="ruby-string">&#39;est&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Estonia&#39;</span>,
+    <span class="ruby-string">&#39;eth&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ethiopia&#39;</span>,
+    <span class="ruby-string">&#39;fij&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Fiji&#39;</span>,
+    <span class="ruby-string">&#39;fin&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Finland&#39;</span>,
+    <span class="ruby-string">&#39;fra&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;France&#39;</span>,
+    <span class="ruby-string">&#39;fsm&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Federated States of Micronesia&#39;</span>,
+    <span class="ruby-string">&#39;gab&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Gabon&#39;</span>,
+    <span class="ruby-string">&#39;gam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;The Gambia&#39;</span>,
+    <span class="ruby-string">&#39;gbr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Great Britain&#39;</span>,
+    <span class="ruby-string">&#39;gbs&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Guinea-Bissau&#39;</span>,
+    <span class="ruby-string">&#39;geo&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Georgia&#39;</span>,
+    <span class="ruby-string">&#39;geq&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Equatorial Guinea&#39;</span>,
+    <span class="ruby-string">&#39;ger&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Germany&#39;</span>,
+    <span class="ruby-string">&#39;gha&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ghana&#39;</span>,
+    <span class="ruby-string">&#39;gre&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Greece&#39;</span>,
+    <span class="ruby-string">&#39;grn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Grenada&#39;</span>,
+    <span class="ruby-string">&#39;gua&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Guatemala&#39;</span>,
+    <span class="ruby-string">&#39;gui&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Guinea&#39;</span>,
+    <span class="ruby-string">&#39;gum&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Guam&#39;</span>,
+    <span class="ruby-string">&#39;guy&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Guyana&#39;</span>,
+    <span class="ruby-string">&#39;hai&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Haiti&#39;</span>,
+    <span class="ruby-string">&#39;hkg&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Hong Kong, China&#39;</span>,
+    <span class="ruby-string">&#39;hon&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Honduras&#39;</span>,
+    <span class="ruby-string">&#39;hun&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Hungary&#39;</span>,
+    <span class="ruby-string">&#39;ina&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Indonesia&#39;</span>,
+    <span class="ruby-string">&#39;ind&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;India&#39;</span>,
+    <span class="ruby-string">&#39;iri&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Iran&#39;</span>,
+    <span class="ruby-string">&#39;irl&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ireland&#39;</span>,
+    <span class="ruby-string">&#39;irq&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Iraq&#39;</span>,
+    <span class="ruby-string">&#39;isl&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Iceland&#39;</span>,
+    <span class="ruby-string">&#39;isr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Israel&#39;</span>,
+    <span class="ruby-string">&#39;isv&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Virgin Islands&#39;</span>,
+    <span class="ruby-string">&#39;ita&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Italy&#39;</span>,
+    <span class="ruby-string">&#39;ivb&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;British Virgin Islands&#39;</span>,
+    <span class="ruby-string">&#39;jam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Jamaica&#39;</span>,
+    <span class="ruby-string">&#39;jor&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Jordan&#39;</span>,
+    <span class="ruby-string">&#39;jpn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Japan&#39;</span>,
+    <span class="ruby-string">&#39;kaz&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kazakhstan&#39;</span>,
+    <span class="ruby-string">&#39;ken&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kenya&#39;</span>,
+    <span class="ruby-string">&#39;kgz&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kyrgyzstan&#39;</span>,
+    <span class="ruby-string">&#39;kir&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kiribati&#39;</span>,
+    <span class="ruby-string">&#39;kor&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;South Korea&#39;</span>,
+    <span class="ruby-string">&#39;kos&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kosovo&#39;</span>,
+    <span class="ruby-string">&#39;ksa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Saudi Arabia&#39;</span>,
+    <span class="ruby-string">&#39;kuw&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Kuwait&#39;</span>,
+    <span class="ruby-string">&#39;lao&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Laos&#39;</span>,
+    <span class="ruby-string">&#39;lat&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Latvia&#39;</span>,
+    <span class="ruby-string">&#39;lba&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Libya&#39;</span>,
+    <span class="ruby-string">&#39;lbn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Lebanon&#39;</span>,
+    <span class="ruby-string">&#39;lbr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Liberia&#39;</span>,
+    <span class="ruby-string">&#39;lca&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Saint Lucia&#39;</span>,
+    <span class="ruby-string">&#39;les&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Lesotho&#39;</span>,
+    <span class="ruby-string">&#39;lie&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Liechtenstein&#39;</span>,
+    <span class="ruby-string">&#39;ltu&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Lithuania&#39;</span>,
+    <span class="ruby-string">&#39;lux&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Luxembourg&#39;</span>,
+    <span class="ruby-string">&#39;mad&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Madagascar&#39;</span>,
+    <span class="ruby-string">&#39;mar&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Morocco&#39;</span>,
+    <span class="ruby-string">&#39;mas&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Malaysia&#39;</span>,
+    <span class="ruby-string">&#39;maw&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Malawi&#39;</span>,
+    <span class="ruby-string">&#39;mda&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Moldova&#39;</span>,
+    <span class="ruby-string">&#39;mdv&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Maldives&#39;</span>,
+    <span class="ruby-string">&#39;mex&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mexico&#39;</span>,
+    <span class="ruby-string">&#39;mgl&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mongolia&#39;</span>,
+    <span class="ruby-string">&#39;mhl&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Marshall Islands&#39;</span>,
+    <span class="ruby-string">&#39;mkd&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;North Macedonia&#39;</span>,
+    <span class="ruby-string">&#39;mli&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mali&#39;</span>,
+    <span class="ruby-string">&#39;mlt&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Malta&#39;</span>,
+    <span class="ruby-string">&#39;mne&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Montenegro&#39;</span>,
+    <span class="ruby-string">&#39;mon&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Monaco&#39;</span>,
+    <span class="ruby-string">&#39;moz&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mozambique&#39;</span>,
+    <span class="ruby-string">&#39;mri&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mauritius&#39;</span>,
+    <span class="ruby-string">&#39;mtn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Mauritania&#39;</span>,
+    <span class="ruby-string">&#39;mya&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Myanmar&#39;</span>,
+    <span class="ruby-string">&#39;nam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Namibia&#39;</span>,
+    <span class="ruby-string">&#39;nca&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Nicaragua&#39;</span>,
+    <span class="ruby-string">&#39;ned&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Netherlands&#39;</span>,
+    <span class="ruby-string">&#39;nep&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Nepal&#39;</span>,
+    <span class="ruby-string">&#39;ngr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Nigeria&#39;</span>,
+    <span class="ruby-string">&#39;nig&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Niger&#39;</span>,
+    <span class="ruby-string">&#39;nor&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Norway&#39;</span>,
+    <span class="ruby-string">&#39;nru&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Nauru&#39;</span>,
+    <span class="ruby-string">&#39;nzl&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;New Zealand&#39;</span>,
+    <span class="ruby-string">&#39;oma&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Oman&#39;</span>,
+    <span class="ruby-string">&#39;pak&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Pakistan&#39;</span>,
+    <span class="ruby-string">&#39;pan&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Panama&#39;</span>,
+    <span class="ruby-string">&#39;par&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Paraguay&#39;</span>,
+    <span class="ruby-string">&#39;per&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Peru&#39;</span>,
+    <span class="ruby-string">&#39;phi&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Philippines&#39;</span>,
+    <span class="ruby-string">&#39;ple&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Palestine&#39;</span>,
+    <span class="ruby-string">&#39;plw&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Palau&#39;</span>,
+    <span class="ruby-string">&#39;png&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Papua New Guinea&#39;</span>,
+    <span class="ruby-string">&#39;pol&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Poland&#39;</span>,
+    <span class="ruby-string">&#39;por&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Portugal&#39;</span>,
+    <span class="ruby-string">&#39;prk&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;North Korea&#39;</span>,
+    <span class="ruby-string">&#39;pur&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Puerto Rico&#39;</span>,
+    <span class="ruby-string">&#39;qat&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Qatar&#39;</span>,
+    <span class="ruby-string">&#39;rou&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Romania&#39;</span>,
+    <span class="ruby-string">&#39;rsa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;South Africa&#39;</span>,
+    <span class="ruby-string">&#39;rus&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Russia&#39;</span>,
+    <span class="ruby-string">&#39;rwa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Rwanda&#39;</span>,
+    <span class="ruby-string">&#39;sam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Samoa&#39;</span>,
+    <span class="ruby-string">&#39;sen&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Senegal&#39;</span>,
+    <span class="ruby-string">&#39;sey&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Seychelles&#39;</span>,
+    <span class="ruby-string">&#39;sgp&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Singapore&#39;</span>,
+    <span class="ruby-string">&#39;skn&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Saint Kitts and Nevis&#39;</span>,
+    <span class="ruby-string">&#39;sle&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Sierra Leone&#39;</span>,
+    <span class="ruby-string">&#39;slo&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Slovenia&#39;</span>,
+    <span class="ruby-string">&#39;smr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;San Marino&#39;</span>,
+    <span class="ruby-string">&#39;sol&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Solomon Islands&#39;</span>,
+    <span class="ruby-string">&#39;som&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Somalia&#39;</span>,
+    <span class="ruby-string">&#39;srb&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Serbia&#39;</span>,
+    <span class="ruby-string">&#39;sri&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Sri Lanka&#39;</span>,
+    <span class="ruby-string">&#39;ssd&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;South Sudan&#39;</span>,
+    <span class="ruby-string">&#39;stp&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;São Tomé and Príncipe&#39;</span>,
+    <span class="ruby-string">&#39;sud&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Sudan&#39;</span>,
+    <span class="ruby-string">&#39;sui&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Switzerland&#39;</span>,
+    <span class="ruby-string">&#39;sur&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Suriname&#39;</span>,
+    <span class="ruby-string">&#39;svk&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Slovakia&#39;</span>,
+    <span class="ruby-string">&#39;swe&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Sweden&#39;</span>,
+    <span class="ruby-string">&#39;swz&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Eswatini&#39;</span>,
+    <span class="ruby-string">&#39;syr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Syria&#39;</span>,
+    <span class="ruby-string">&#39;tan&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Tanzania&#39;</span>,
+    <span class="ruby-string">&#39;tga&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Tonga&#39;</span>,
+    <span class="ruby-string">&#39;tha&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Thailand&#39;</span>,
+    <span class="ruby-string">&#39;tjk&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Tajikistan&#39;</span>,
+    <span class="ruby-string">&#39;tkm&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Turkmenistan&#39;</span>,
+    <span class="ruby-string">&#39;tls&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;East Timor&#39;</span>,
+    <span class="ruby-string">&#39;tog&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Togo&#39;</span>,
+    <span class="ruby-string">&#39;tpe&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Chinese Taipei&#39;</span>,
+    <span class="ruby-string">&#39;tto&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Trinidad and Tobago&#39;</span>,
+    <span class="ruby-string">&#39;tun&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Tunisia&#39;</span>,
+    <span class="ruby-string">&#39;tur&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Turkey&#39;</span>,
+    <span class="ruby-string">&#39;tuv&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Tuvalu&#39;</span>,
+    <span class="ruby-string">&#39;uae&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;United Arab Emirates&#39;</span>,
+    <span class="ruby-string">&#39;uga&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Uganda&#39;</span>,
+    <span class="ruby-string">&#39;ukr&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ukraine&#39;</span>,
+    <span class="ruby-string">&#39;uru&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Uruguay&#39;</span>,
+    <span class="ruby-string">&#39;usa&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;United States&#39;</span>,
+    <span class="ruby-string">&#39;uzb&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Uzbekistan&#39;</span>,
+    <span class="ruby-string">&#39;van&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Vanuatu&#39;</span>,
+    <span class="ruby-string">&#39;ven&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Venezuela&#39;</span>,
+    <span class="ruby-string">&#39;vie&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Vietnam&#39;</span>,
+    <span class="ruby-string">&#39;vin&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Saint Vincent and the Grenadines&#39;</span>,
+    <span class="ruby-string">&#39;yem&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Yemen&#39;</span>,
+    <span class="ruby-string">&#39;zam&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Zambia&#39;</span>,
+    <span class="ruby-string">&#39;zim&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Zimbabwe&#39;</span>
+  }
+
+  [<span class="ruby-identifier">track_info</span>[<span class="ruby-value">:circuit</span>], <span class="ruby-identifier">track_info</span>[<span class="ruby-value">:location</span>], <span class="ruby-identifier">ioc_hash</span>[<span class="ruby-identifier">track_info</span>[<span class="ruby-value">:ioc_code</span>]], <span class="ruby-identifier">track_info</span>[<span class="ruby-value">:track</span>],
+   <span class="ruby-node">&quot;#{track_info[:length_in_km]} km&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

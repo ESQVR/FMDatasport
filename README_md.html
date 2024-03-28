@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+
+
+  <ul class="link-list" role="directory">
+              <li>      <a href="#label-FMDatasport">FMDatasport</a>
+          <li>      <a href="#label-Installation">Installation</a>
+          <li>
+            <details open>
+              <summary>      <a href="#label-Command+Line+Tools">Command Line Tools</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>
+            <details open>
+              <summary>      <a href="#label-1.+Record+telemetry+data+with+standalone+fmdorecorder">1. Record telemetry data with standalone fmdorecorder</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Usage">Usage</a>
+          <li>      <a href="#label-Options+-2F+Defaults">Options / Defaults</a>
+          <li>      <a href="#label-Example">Example</a>
+
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details open>
+              <summary>      <a href="#label-2.+Playback+saved+telemetry+data+with+fmdoplayer">2. Playback saved telemetry data with fmdoplayer</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Usage">Usage</a>
+          <li>      <a href="#label-Options+-2F+Defaults">Options / Defaults</a>
+          <li>      <a href="#label-Example">Example</a>
+
+              </ul>
+            </details>
+          </li>
+
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details open>
+              <summary>      <a href="#label-Demo+Implementation+using+SamplePlayer">Demo Implementation using SamplePlayer</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Demo+Script+-28click+here-29"><a href="lib/data/samples/demo_rb.html">Demo Script (click here)</a></a>
+
+              </ul>
+            </details>
+          </li>
+
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./LICENSE_txt.html">LICENSE</a>
+    <li><a href="./README_md.html">README</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-FMDatasport"><a href="FMDatasport.html"><code>FMDatasport</code></a><span><a href="#label-FMDatasport">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="FMDatasport.html"><code>FMDatasport</code></a> is a Ruby gem for receiving and parsing data from the Forza Motorsport Data Out (FMDO) UDP stream. It provides real-time access to telemetry as well as car and track information, facilitating the development of Ruby applications for Forza Motorsport. <a href="FMDatasport.html"><code>FMDatasport</code></a> currently supports only Forza Motorsport 2023 (AKA FM8).</p>
+
+<p>Official Forza Motorsport Data Out specs can be found here: <a href="https://support.forzamotorsport.net/hc/en-us/articles/21742934024211-Forza-Motorsport-Data-Out-Documentation">support.forzamotorsport.net/hc/en-us/articles/21742934024211-Forza-Motorsport-Data-Out-Documentation</a></p>
+
+<p>This gem also contains fmdoplayer and fmdorecorder; standalone executables for recording and simulating playback of FMDO streams. The resulting files can be used for application testing without the need for a live stream.</p>
+
+<p>Saved sessions can also be used with the forthcoming <code>FMDatasportR</code> analysis engine. Details on this project can be found here: <a href="https://github.com/ESQVR/ForzaDatasport-Ruby">github.com/ESQVR/ForzaDatasport-Ruby</a></p>
+
+<p>For detailed information on using this gem please review the <a href="doc/index.html">RDocs Documentation</a></p>
+
+<h1 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>To install <a href="FMDatasport.html"><code>FMDatasport</code></a> use:</p>
+
+<p><code>  gem install fmdatasport </code></p>
+
+<h1 id="label-Command+Line+Tools">Command Line Tools<span><a href="#label-Command+Line+Tools">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-1.+Record+telemetry+data+with+standalone+fmdorecorder">1. Record telemetry data with standalone fmdorecorder<span><a href="#label-1.+Record+telemetry+data+with+standalone+fmdorecorder">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In addition to the <a href="SampleRecorder.html"><code>SampleRecorder</code></a> class, the <code>fmdorecorder</code> command-line application can be used to record FMDO streams to a local file for playback.</p>
+
+<p><code>fmdorecorder</code> generates files containing the raw binary received from FMDO. These files are saved to the <code>/sessions</code> directory with a timestamp (YYYY/DD/MM/H/M) appended to their name.</p>
+
+<h3 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">fmdorecorder</span> [<span class="ruby-identifier">options</span>]
+</pre>
+
+<h3 id="label-Options+-2F+Defaults">Options / Defaults<span><a href="#label-Options+-2F+Defaults">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>-p, --port PORT</code>: Specify the port number to which the sample data will be broadcasting</p>
+</li></ul>
+
+<p>If not provided, the default port number <code>9876</code> will be used. (This port is commonly available, but you can specify any open port)</p>
+<ul><li>
+<p><code>-f, --file FILE</code>: Specify the name of the recorded data file</p>
+</li></ul>
+
+<p>If not provided, the default name <code>recorded_stream[time_stamp]</code> will be used</p>
+<ul><li>
+<p><code>-l, --length LENGTH</code>: Specify the length of the recording, in seconds</p>
+</li></ul>
+
+<p>If not provided, the default recording length is 60 seconds</p>
+
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>fmdorecorder -p 1234 -f output.txt -l 30</pre>
+
+<p>This example command: - records sample data - saves it to the file <code>/sessions/output.txt</code> - for 30 seconds total</p>
+
+<h2 id="label-2.+Playback+saved+telemetry+data+with+fmdoplayer">2. Playback saved telemetry data with fmdoplayer<span><a href="#label-2.+Playback+saved+telemetry+data+with+fmdoplayer">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The <code>fmdoplayer</code> command-line tool allows playback / broadcasting of saved telemetry session files.</p>
+
+<p>Instantiating a new <a href="FMDatasport.html"><code>FMDatasport</code></a> object that listens on the same IP/Port as the <code>fmdoplayer</code> broadcast will simulate receiving a live FM Data Out stream - allowing for application testing or data analysis with other tools.</p>
+
+<p>The <code>fmdoplayer</code> is also able to loop the stream from a file a specified number of times if specified in [options].</p>
+
+<h3 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">fmdoplayer</span> [<span class="ruby-identifier">options</span>]
+</pre>
+
+<h3 id="label-Options+-2F+Defaults">Options / Defaults<span><a href="#label-Options+-2F+Defaults">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>-f, --file [FILENAME]</code>: Specify the name of the recorded data file.</p>
+</li></ul>
+
+<p>If not provided the default name <code>recorded_stream</code> will be used.</p>
+<ul><li>
+<p><code>-i, --ip [IP_ADDR]</code>: Specifiy the IP address to which the sample data will be broadcasting.</p>
+</li></ul>
+
+<p>If not provided, the default IP address <code>127.0.0.1</code> will be used. (The localhost IP is the best choice in most situations)</p>
+<ul><li>
+<p><code>-p, --port [PORT]</code>: Specify the port number to which the sample data will be broadcasting.</p>
+</li></ul>
+
+<p>If not provided, the default port number <code>9876</code> will be used. (This port is commonly available, but you can specify any open port)</p>
+<ul><li>
+<p><code>-l, --loop [LOOPS]</code>: Specify the number of times the sample data will be looped for broadcasting</p>
+</li></ul>
+
+<p>If not provided, the default loop count is <code>1</code>.</p>
+
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>fmdoplayer -f output.txt -i 192.168.1.100 -p 1234 -l 3</pre>
+<ol><li>
+<p>reads from the file output.txt,</p>
+</li><li>
+<p>broadcasts the stream to the IP address 192.168.1.100</p>
+</li><li>
+<p>on port 1234</p>
+</li><li>
+<p>loops the data broadcasting three times</p>
+</li></ol>
+
+<h1 id="label-Demo+Implementation+using+SamplePlayer">Demo Implementation using <a href="SamplePlayer.html"><code>SamplePlayer</code></a><span><a href="#label-Demo+Implementation+using+SamplePlayer">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>See example below for a simple implementation that will output to console 1 second of selected data from a recorded sample file: <code>lib/data/samples/sample_data</code></p>
+
+<h3 id="label-Demo+Script+-28click+here-29"><a href="lib/data/samples/demo_rb.html">Demo Script (click here)</a><span><a href="#label-Demo+Script+-28click+here-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-comment"># frozen_string_literal: true</span>
+
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fmdatasport&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sample_player&#39;</span>
+
+<span class="ruby-identifier">player</span> = <span class="ruby-constant">SamplePlayer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;lib/data/samples/sample_data&#39;</span>, <span class="ruby-string">&#39;127.0.0.1&#39;</span>, <span class="ruby-value">9876</span>)
+<span class="ruby-identifier">fmdo_sample</span> = <span class="ruby-constant">FMDatasport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;127.0.0.1&#39;</span>, <span class="ruby-value">9876</span>)    <span class="ruby-comment"># Same IP/Port as SamplePlayer</span>
+
+<span class="ruby-identifier">player</span>.<span class="ruby-identifier">play</span>                                         <span class="ruby-comment"># Begin sample playback</span>
+<span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>                               <span class="ruby-comment"># Set for loop control</span>
+
+<span class="ruby-comment"># Loop for 1 second, output selected telemetry and static values</span>
+<span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>                <span class="ruby-comment"># limit loop to 1 second</span>
+
+  <span class="ruby-comment"># Wait 1/60th of a second before beginning log (Forza Data Out rate)</span>
+  <span class="ruby-identifier">sleep</span> <span class="ruby-value">0.01667</span>
+
+  <span class="ruby-comment"># Set variables to desired fields from @udp_data</span>
+  <span class="ruby-identifier">rpm</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:current_engine_rpm</span>].<span class="ruby-identifier">round</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">gear</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:gear</span>]
+  <span class="ruby-identifier">speed</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">udp_data</span>[<span class="ruby-value">:speed</span>]
+
+  <span class="ruby-comment"># Print values to console</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;RPM: #{rpm}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gear: #{gear}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Speed (unconverted): #{speed}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># After the playback is complete, log (static) car information once</span>
+<span class="ruby-identifier">car</span> = <span class="ruby-identifier">fmdo_sample</span>.<span class="ruby-identifier">static_data</span>[<span class="ruby-value">:&quot;Car Ordinal&quot;</span>] <span class="ruby-comment"># =&gt; [year, make, model]</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\nCar Info&quot;</span>
+<span class="ruby-identifier">car</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">info</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">info</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

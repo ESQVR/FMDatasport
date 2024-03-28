@@ -1,9 +1,0 @@
-# Ignore .DS_Store files in all directories and subdirectories
-**/.DS_Store
-
-# Ignore VSCode files and directories
-.vscode/
-.vscodeignore
-
-# Ignore Demo Files
-/demo/

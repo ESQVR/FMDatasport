@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module CarInfo - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-load_and_merge_list">::load_and_merge_list</a>
+    <li ><a href="#method-i-car_lookup">#car_lookup</a>
+    <li ><a href="#method-i-convert_class">#convert_class</a>
+    <li ><a href="#method-i-convert_drive">#convert_drive</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-CarInfo">
+  <h1 id="module-CarInfo" class="module">
+    module CarInfo
+  </h1>
+
+  <section class="description">
+    
+<p><a href="CarInfo.html"><code>CarInfo</code></a></p>
+
+<p><a href="CarInfo.html"><code>CarInfo</code></a> offers methods to convert static integer values from <a href="FMDOParser.html"><code>FMDOParser</code></a> into readable strings.</p>
+
+<p>Upon loading, the <a href="CarInfo.html"><code>CarInfo</code></a> module reads data from car_list.json into the symbolized hash constant <a href="CarInfo.html#CAR_LIST"><code>CAR_LIST</code></a>. Year, make, and model string values are retrievable by passing Car Ordinal keys to the <a href="CarInfo.html#method-i-car_lookup"><code>car_lookup</code></a> method which uses the <a href="CarInfo.html#CAR_LIST"><code>CAR_LIST</code></a> to identify the currently selected car.</p>
+
+<p>Additional methods for converting static values from <a href="FMDOParser.html"><code>FMDOParser</code></a> (car class and drivetrain type) into readable strings.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="CAR_LIST">CAR_LIST
+        <dd><p>Constant for storing hashed year, make, model info using Car Ordinal keys.</p>
+
+<p>“2740”:{“year”:2017,“make”:“Abarth”,“model”:“124 Spider”},</p>
+      </dl>
+    </section>
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-load_and_merge_list" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">load_and_merge_list</span><span
+              class="method-args">(file_path)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Load (and merge) from car_list.json external file into <a href="CarInfo.html#CAR_LIST"><code>CAR_LIST</code></a>.</p>
+
+          <div class="method-source-code" id="load_and_merge_list-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">load_and_merge_list</span>(<span class="ruby-identifier">file_path</span>)
+  <span class="ruby-comment"># Load external list from JSON file (symbolized)</span>
+  <span class="ruby-comment">#   - symbolizes names for use by car_lookup</span>
+  <span class="ruby-identifier">external_list</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file_path</span>), <span class="ruby-value">symbolize_names:</span> <span class="ruby-keyword">true</span>)
+
+  <span class="ruby-comment"># Merge external list with CAR_LIST constant</span>
+  <span class="ruby-comment"># Return the merged list</span>
+  <span class="ruby-constant">CAR_LIST</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">external_list</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-car_lookup" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">car_lookup</span><span
+              class="method-args">(ordinal)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Retrieves car details from <a href="CarInfo.html#CAR_LIST"><code>CAR_LIST</code></a> by Ordinal.</p>
+
+<p>@param ordinal [Integer] The ID of the car to look up.</p>
+
+<p>@return [Array&lt;String&gt;] An array containing the car’s year, make, and model.</p>
+
+<p>@example</p>
+
+<pre class="ruby"><span class="ruby-identifier">car_lookup</span>(<span class="ruby-value">2740</span>) <span class="ruby-comment"># =&gt; [&quot;2017&quot;, &quot;Abarth&quot;, &quot;124 Spider&quot;]</span>
+</pre>
+
+          <div class="method-source-code" id="car_lookup-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">car_lookup</span>(<span class="ruby-identifier">ordinal</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ordinal</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-comment"># Retrieves current car info by ordinal from CAR_LIST hash</span>
+  <span class="ruby-comment"># Arguments passed by extract_static_data calls are symbolized</span>
+  <span class="ruby-identifier">car_info</span> = <span class="ruby-constant">CAR_LIST</span>[<span class="ruby-identifier">ordinal</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">to_sym</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Car Ordinal #{ordinal} is not in data file. Please Update&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">car_info</span>.<span class="ruby-identifier">nil?</span>
+
+  [<span class="ruby-identifier">car_info</span>[<span class="ruby-value">:year</span>], <span class="ruby-identifier">car_info</span>[<span class="ruby-value">:make</span>], <span class="ruby-identifier">car_info</span>[<span class="ruby-value">:model</span>]]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-convert_class" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">convert_class</span><span
+              class="method-args">(num)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Converts :car_class integer into readable class letters for display</p>
+
+<p><a href="CarInfo.html#method-i-convert_class"><code>convert_class</code></a>(3)  =&gt; ‘B’</p>
+
+          <div class="method-source-code" id="convert_class-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert_class</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-identifier">conversion</span> = { <span class="ruby-value">0</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;E&#39;</span>, <span class="ruby-value">1</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;D&#39;</span>, <span class="ruby-value">2</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;C&#39;</span>, <span class="ruby-value">3</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;B&#39;</span>, <span class="ruby-value">4</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;A&#39;</span>, <span class="ruby-value">5</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;S&#39;</span>, <span class="ruby-value">6</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;R&#39;</span>, <span class="ruby-value">7</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;P&#39;</span>, <span class="ruby-value">8</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;X&#39;</span> }
+  <span class="ruby-identifier">conversion</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">num</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">conversion</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;Error: Invalid Class ID Number&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-convert_drive" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">convert_drive</span><span
+              class="method-args">(num)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Converts drivetrain-type integers into readable drivetrain labels for display</p>
+
+          <div class="method-source-code" id="convert_drive-source">
+            <pre><span class="ruby-comment"># File lib/fmdatasport/car_info.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert_drive</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-identifier">conversion</span> = { <span class="ruby-value">0</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;FWD&#39;</span>, <span class="ruby-value">1</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;RWD&#39;</span>, <span class="ruby-value">2</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;AWD&#39;</span> }
+  <span class="ruby-identifier">conversion</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">num</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">conversion</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;Error: Invalid drive type&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
