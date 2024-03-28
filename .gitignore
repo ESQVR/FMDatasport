@@ -7,6 +7,3 @@
 
 # Ignore Demo Files
 /demo/
-
-# Ignore gem files
-*.gem
