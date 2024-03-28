@@ -29,7 +29,8 @@ module CarInfo
   end
 
   # Ensures external list file is loaded when modulue is first loaded
-  load_and_merge_list('lib/data/car_list.json')
+  # load_and_merge_list('lib/data/car_list.json')
+  load_and_merge_list(File.join(Gem.loaded_specs['fmdatasport'].full_gem_path, 'lib', 'data', 'car_list.json'))
 
   ##
   # Retrieves car details from CAR_LIST by Ordinal.

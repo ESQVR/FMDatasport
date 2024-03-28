@@ -4,6 +4,12 @@
 
 require 'optparse'
 require_relative '../lib/fmdatasport/sample_recorder'
+require_relative '../lib/fmdatasport/version'
+
+if ARGV.include?('--version')
+  puts "fmdorecorder #{FMDatasportVersion::VERSION}"
+  exit
+end
 
 # Parse command-line arguments
 options = {}

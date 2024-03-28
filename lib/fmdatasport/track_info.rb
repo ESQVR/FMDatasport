@@ -2,8 +2,6 @@
 
 require 'json'
 
-# TODO: FINISH WRITING MODULE DESCRIPTION
-
 # Module: TrackInfo
 #
 # TrackInfo reads track information data from an external file and makes this available to FMDatasport
@@ -16,7 +14,7 @@ module TrackInfo # rubocop:disable Metrics/ModuleLength
     TRACK_LIST.merge!(external_list)
   end
 
-  load_and_merge_tracks('lib/data/track_info.json')
+  load_and_merge_tracks(File.join(Gem.loaded_specs['fmdatasport'].full_gem_path, 'lib', 'data', 'track_info.json'))
 
   def track_lookup(ordinal) # rubocop:disable Metrics/MethodLength
     return nil if ordinal.nil?

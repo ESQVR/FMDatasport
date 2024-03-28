@@ -2,6 +2,9 @@
 
 require 'socket'
 require_relative 'fmdatasport/parser_module'
+require_relative 'fmdatasport/version'
+require_relative 'fmdatasport/sample_player'
+require_relative 'fmdatasport/sample_recorder'
 
 # Instantiating an FMDatasport object initializes a UDP socket listener in a separate thread which waits(blocks)
 # until data is available to read.

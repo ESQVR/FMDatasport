@@ -38,7 +38,7 @@ class SampleRecorder
     start_time = Time.now
     timestamp = Time.now.strftime("%Y%m%d%H%M") # Get timestamp in YYYYMMDDHHMM format
 
-    directory = File.join(File.dirname(__FILE__), '..', '..', 'sessions') # Directory to prepend to the base file path
+    directory = File.join(Dir.pwd, 'sessions') # Directory to prepend to the base file path
 
     Dir.mkdir(directory) unless File.exist?(directory)
 

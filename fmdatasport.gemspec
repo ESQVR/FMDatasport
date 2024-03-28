@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = '3.2.0'
+  s.required_ruby_version = '>= 2.7'
   s.name        = 'fmdatasport'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2024-03-27'
   s.summary     = 'Receives, parses, and processes Forza Motorsport Data Out Telemetry'
   s.authors     = ['ESQVR']
@@ -14,10 +14,11 @@ Gem::Specification.new do |s|
     'lib/fmdatasport/sample_player.rb',
     'lib/fmdatasport/sample_recorder.rb',
     'lib/fmdatasport/track_info.rb',
+    'lib/fmdatasport/version.rb',
     'lib/data/car_list.json',
     'lib/data/track_info.json'
   ]
-  s.licence = 'MIT'
+  s.license = 'MIT'
   s.post_install_message = 'No matter how strong the pain is, its our duty to move forward.'
   s.require_paths = ['lib']
   s.description = <<~DESC
@@ -30,4 +31,5 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md', 'LICENSE.txt']
   s.executables = ['fmdoplayer', 'fmdorecorder']
+  s.homepage = 'https://esqvr.github.io/FMDatasport/'
 end
