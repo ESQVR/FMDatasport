@@ -13,7 +13,7 @@ streams. The resulting files can be used for application testing without the nee
 Saved sessions can also be used with the forthcoming `FMDatasportR` analysis engine. Details on this project can be
 found here: https://github.com/ESQVR/ForzaDatasport-Ruby
 
-For detailed information on using this gem please review the [RDocs Documentation](doc/index.html)
+For detailed information on using this gem please review the [RDocs Documentation](https://esqvr.github.io/FMDatasport/)
 
 # Installation
 To install FMDatasport use:
